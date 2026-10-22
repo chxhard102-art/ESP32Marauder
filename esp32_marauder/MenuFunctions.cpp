@@ -4344,7 +4344,7 @@ void MenuFunctions::buildWiFiGeneralMenu()
 
   // Clone AP MAC to ESP32 for button folks
   //#ifndef HAS_ILI9341
-    this->addNodes(&setMacMenu, "Clone AP MAC", TFTRED, CLEAR_ICO, [this](){
+    this->addNodes(&setMacMenu, "Identity Thief (AP)", TFTRED, CLEAR_ICO, [this](){
       wifiAPMenu.parentMenu = &wifiGeneralMenu;
 
       // Add the back button
@@ -4365,7 +4365,7 @@ void MenuFunctions::buildWiFiGeneralMenu()
       this->changeMenu(&wifiAPMenu, true);
     });
 
-    this->addNodes(&setMacMenu, "Clone STA MAC", TFTMAGENTA, CLEAR_ICO, [this](){
+    this->addNodes(&setMacMenu, "Identity Thief (STA)", TFTMAGENTA, CLEAR_ICO, [this](){
       wifiAPMenu.parentMenu = &wifiGeneralMenu;
 
       // Add the back button
@@ -4439,12 +4439,12 @@ void MenuFunctions::buildBluetoothAttackMenu()
   this->addNodes(&bluetoothAttackMenu, text09, TFTLIGHTGREY, 0, [this]() {
     this->changeMenu(bluetoothAttackMenu.parentMenu, true);
   });
-  this->addNodes(&bluetoothAttackMenu, "Sour Apple", TFTGREEN, DEAUTH_SNIFF, [this]() {
+  this->addNodes(&bluetoothAttackMenu, "Apple Annoyer", TFTGREEN, DEAUTH_SNIFF, [this]() {
     display_obj.clearScreen();
     this->drawStatusBar();
     wifi_scan_obj.StartScan(BT_ATTACK_SOUR_APPLE, TFT_GREEN);
   });
-  this->addNodes(&bluetoothAttackMenu, "Apple Juice", TFTYELLOW, DEAUTH_SNIFF, [this]() {
+  this->addNodes(&bluetoothAttackMenu, "Juice Jacker", TFTYELLOW, DEAUTH_SNIFF, [this]() {
     display_obj.clearScreen();
     this->drawStatusBar();
     wifi_scan_obj.StartScan(BT_ATTACK_APPLE_JUICE, TFT_YELLOW);
@@ -4469,7 +4469,7 @@ void MenuFunctions::buildBluetoothAttackMenu()
     this->drawStatusBar();
     wifi_scan_obj.StartScan(BT_ATTACK_FLIPPER_SPAM, TFT_ORANGE);
   });
-  this->addNodes(&bluetoothAttackMenu, "BLE Spam All", TFTMAGENTA, DEAUTH_SNIFF, [this]() {
+  this->addNodes(&bluetoothAttackMenu, "Bluetooth Chaos", TFTMAGENTA, DEAUTH_SNIFF, [this]() {
     display_obj.clearScreen();
     this->drawStatusBar();
     wifi_scan_obj.StartScan(BT_ATTACK_SPAM_ALL, TFT_MAGENTA);
@@ -4675,7 +4675,7 @@ void MenuFunctions::buildLazyMenu(Menu* menu)
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_PING_SCAN, TFT_CYAN);
       });
-      this->addNodes(menu, "ARP Scan", TFTCYAN, SCANNERS, [this]() {
+      this->addNodes(menu, "Who's Home", TFTCYAN, SCANNERS, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ARP_SCAN, TFT_CYAN);
@@ -4995,37 +4995,37 @@ void MenuFunctions::buildLazyMenu(Menu* menu)
         }
         this->changeMenu(&selectProbeSSIDsMenu, true);
       });
-      this->addNodes(menu, "Bad Msg", TFTRED, DEAUTH_SNIFF, [this]() {
+      this->addNodes(menu, "Rage Quit", TFTRED, DEAUTH_SNIFF, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ATTACK_BAD_MSG, TFT_RED);
       });
-      this->addNodes(menu, "Bad Msg Targeted", TFTYELLOW, DEAUTH_SNIFF, [this]() {
+      this->addNodes(menu, "Rage Quit (Sniper)", TFTYELLOW, DEAUTH_SNIFF, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ATTACK_BAD_MSG_TARGETED, TFT_YELLOW);
       });
-      this->addNodes(menu, "Assoc Sleep", TFTRED, DEAUTH_SNIFF, [this]() {
+      this->addNodes(menu, "Nap Time", TFTRED, DEAUTH_SNIFF, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ATTACK_SLEEP, TFT_RED);
       });
-      this->addNodes(menu, "Assoc Sleep Targ", TFTMAGENTA, DEAUTH_SNIFF, [this]() {
+      this->addNodes(menu, "Nap Time (Sniper)", TFTMAGENTA, DEAUTH_SNIFF, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ATTACK_SLEEP_TARGETED, TFT_MAGENTA);
       });
-      this->addNodes(menu, "SAE Commit Flood", TFTLIME, EAPOL, [this]() {
+      this->addNodes(menu, "Handshake Spam", TFTLIME, EAPOL, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ATTACK_SAE_COMMIT, TFT_GREEN);
       });
-      this->addNodes(menu, "Channel Switch", TFTORANGE, BEACON_LIST, [this]() {
+      this->addNodes(menu, "Channel Hop Chaos", TFTORANGE, BEACON_LIST, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ATTACK_CSA, TFT_GREEN);
       });
-      this->addNodes(menu, "Quiet Time", TFTRED, BEACON_LIST, [this]() {
+      this->addNodes(menu, "Shut Up Mode", TFTRED, BEACON_LIST, [this]() {
         display_obj.clearScreen();
         this->drawStatusBar();
         wifi_scan_obj.StartScan(WIFI_ATTACK_QUIET, TFT_GREEN);
@@ -5466,24 +5466,25 @@ void MenuFunctions::renderGraphUI(uint8_t scan_mode) {
 }
 
 uint16_t MenuFunctions::getColor(uint16_t color) {
-  if (color == TFTWHITE) return TFT_WHITE;
-  else if (color == TFTCYAN) return TFT_CYAN;
-  else if (color == TFTBLUE) return TFT_BLUE;
-  else if (color == TFTRED) return TFT_RED;
-  else if (color == TFTGREEN) return TFT_GREEN;
+  // ---- RED HACKER TERMINAL THEME ----
+  if (color == TFTWHITE) return TFT_WHITE;              // body text stays white for readability
+  else if (color == TFTCYAN) return 0xFC10;              // was cyan -> red-orange accent
+  else if (color == TFTBLUE) return 0xB000;              // was blue -> dark red
+  else if (color == TFTRED) return TFT_RED;              // already red
+  else if (color == TFTGREEN) return TFT_RED;            // was green (active/on) -> red
   else if (color == TFTGREY) return TFT_LIGHTGREY;
   else if (color == TFTGRAY) return TFT_LIGHTGREY;
-  else if (color == TFTMAGENTA) return TFT_MAGENTA;
-  else if (color == TFTVIOLET) return TFT_VIOLET;
-  else if (color == TFTORANGE) return TFT_ORANGE;
-  else if (color == TFTYELLOW) return TFT_YELLOW;
+  else if (color == TFTMAGENTA) return 0xF810;            // was magenta -> hot red-pink
+  else if (color == TFTVIOLET) return 0x9800;             // was violet -> deep maroon
+  else if (color == TFTORANGE) return TFT_ORANGE;        // kept, fits red/amber terminal look
+  else if (color == TFTYELLOW) return TFT_YELLOW;        // kept for warnings so they still stand out
   else if (color == TFTLIGHTGREY) return TFT_LIGHTGREY;
-  else if (color == TFTPURPLE) return TFT_PURPLE;
-  else if (color == TFTNAVY) return TFT_NAVY;
+  else if (color == TFTPURPLE) return 0x8010;             // was purple -> dark red-purple
+  else if (color == TFTNAVY) return 0x4000;               // was navy -> very dark red
   else if (color == TFTSILVER) return TFT_SILVER;
   else if (color == TFTDARKGREY) return TFT_DARKGREY;
-  else if (color == TFTSKYBLUE) return TFT_SKYBLUE;
-  else if (color == TFTLIME) return 0x97e0;
+  else if (color == TFTSKYBLUE) return 0xFBAE;            // was sky blue -> light red/pink
+  else if (color == TFTLIME) return 0xF840;               // was lime -> reddish
   else return color;
 }
 

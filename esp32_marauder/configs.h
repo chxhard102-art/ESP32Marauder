@@ -1571,7 +1571,7 @@
       #define GREENBUTTON_W (FRAME_W/2)
       #define GREENBUTTON_H FRAME_H
     
-      #define STATUSBAR_COLOR 0x4A49
+      #define STATUSBAR_COLOR 0x1800
     
       #define KIT_LED_BUILTIN 13
     #endif
